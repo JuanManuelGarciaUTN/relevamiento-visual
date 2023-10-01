@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "cargar-credito-e0058": {
+      "hosting": {
+        "app": [
+          "cargar-credito-e0058"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "cargar-credito-e0058"
+  }
+}

@@ -1,0 +1,52 @@
+<ion-content [fullscreen]="true">
+  <div class="splash-animado" *ngIf="cargando">
+    <h1>4*B</h1>
+    <div class="posicion">
+      <img class="icon-animado" src="../../../assets/ic_launcher.png" width="25%" alt="">
+    </div>
+    <div class="posicion-abajo">
+      <h1>Juan Manuel</h1>
+      <h1>Garcia</h1>
+    </div>
+  </div>
+  <div class="contenedor" *ngIf="!cargando">
+    <div class="mostrar-error">
+      <div *ngIf="validando" class="center">
+        <ion-spinner name="dots"></ion-spinner>
+        <h2>Validando</h2> 
+      </div>
+      <div *ngIf="(form.get('email')?.touched && !form.get('email')?.valid)||
+      form.get('password')?.touched && !form.get('password')?.valid ||
+      loginInvalido" class="center">
+        <ion-fab-button size="small" color="success"
+        *ngIf="(form.get('email')?.touched && !form.get('email')?.valid)||
+        form.get('password')?.touched && !form.get('password')?.valid ||
+        loginInvalido">
+          <ion-icon name="bug-outline"></ion-icon>
+        </ion-fab-button> 
+        <h2 *ngIf="form.get('email')?.touched && !form.get('email')?.valid">Correo Inválido</h2> 
+        <h2 *ngIf="form.get('password')?.touched && !form.get('password')?.valid">Falta Contraseña</h2> 
+        <h2 *ngIf="loginInvalido">Credenciales Invalidas</h2>
+      </div>
+    </div>
+    <form class="form" [formGroup]="form" (ngSubmit)="Login()">
+      <div class="left">
+        <input type="email" formControlName="email" placeholder="Ingrese correo electrónico">
+        <input type="password" formControlName="password" placeholder="Ingrese contraseña">
+      </div>
+      <div class="right">
+        <ion-button color="success" (click)="AnteriorAcceso()" [disabled]="validando">
+          <ion-icon name="arrow-back-circle-outline"></ion-icon>
+        </ion-button> 
+        <ion-button color="success" (click)="Login()" [disabled]="form.invalid || validando">
+          <ion-label>Ingresar</ion-label>
+        </ion-button> 
+        <ion-button color="success" (click)="SiguienteAcceso()" [disabled]="validando">
+          <ion-icon name="arrow-forward-circle-outline"></ion-icon>
+        </ion-button> 
+      </div>
+    </form>
+    <img src="../../assets/ic_launcher.png" width="25%" alt="">
+    <h1>Relevamiento Visual</h1>
+  </div>
+</ion-content>
