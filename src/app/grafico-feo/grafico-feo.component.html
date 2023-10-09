@@ -1,0 +1,20 @@
+<ion-content [fullscreen]="true">
+  <div class="contenedor">
+    <h3>Cosas Feas</h3>
+    <canvas #pieChart id="pieChart"></canvas>
+    <div class="datos">
+        <div  class="linea" *ngFor="let item of fotos">
+            <img [src]="item.url">
+            <p class="nombre">{{item.usuario}}</p>
+            <p class="dni">{{obtenerLikes(item.likes)}}</p>
+            <div class="cuadrado" [style.background-color]="item.color"></div>
+        </div>
+    </div>
+  </div>
+  <div class="navegar">
+    <button (click)="cerrarSesion()" class="cerrar-sesion">Cerrar Sesión</button>
+    <button (click)="navegarMisFotos()" class="cerrar-sesion">Mis Fotos</button>
+    <button (click)="sacarNuevaFoto()" class="cerrar-sesion">Sacar Foto</button>
+    <button (click)="navegarGeneral()" class="cerrar-sesion">General</button>
+  </div>
+</ion-content>

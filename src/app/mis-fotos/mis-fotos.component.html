@@ -1,0 +1,21 @@
+<ion-content [fullscreen]="true">
+  <div class="contenedor">
+    <div class="foto" *ngFor="let item of fotos" (click)="like(item)">
+      <img [src]="item.url" alt="">
+      <div class="texto">
+        <p class="like" [ngClass]="{'like-propio': dioLike(item)}">
+          <ion-icon slot="start" name="heart-outline"></ion-icon>
+          {{obtenerLikes(item.likes)}}
+        </p>
+        <p>{{item.usuario}}</p>
+        <p>{{item.fecha | date: 'dd/MM/YY': 'UTC-3'}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="navegar">
+    <button (click)="cerrarSesion()" class="cerrar-sesion">Cerrar Sesión</button>
+    <button (click)="navegarFotos()" class="cerrar-sesion">General</button>
+    <button (click)="sacarNuevaFoto()" class="cerrar-sesion">Sacar Foto</button>
+    <button (click)="navegarGraficos()" class="cerrar-sesion">Gráficos</button>
+  </div>
+</ion-content>

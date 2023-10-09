@@ -18,7 +18,6 @@ export class HomePage {
   public acceso = 0;
 
   constructor(private fb: FormBuilder,private router : Router, private db: BaseDeDatosService){ 
-    this.db.usuario = undefined;
     this.form = this.fb.group({
       'email': ['', [Validators.required, Validators.email]],
       'password':['', [Validators.required]],
@@ -26,13 +25,20 @@ export class HomePage {
   }
 
   ngAfterViewInit(){
-    this.cargando = true;
-    setTimeout(()=>{
-      SplashScreen.hide();
+    if(this.db.usuario){
+      this.db.usuario = undefined;
+    }
+    else{
+      this.cargando = true;
       setTimeout(()=>{
-        this.cargando = false;
-      }, 2500);
-    }, 1000);
+        setTimeout(()=>{
+          SplashScreen.hide();
+          setTimeout(()=>{
+            this.cargando = false;
+          }, 2500);
+        }, 1000);
+      },500);
+    }
   }
 
   Login(){
